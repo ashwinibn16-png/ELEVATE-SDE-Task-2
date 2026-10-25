@@ -1,96 +1,169 @@
-# CredVault — Certificate Issuing & Verification Platform
-### ELEVATE SDE Internship — Task 2 Frontend Prototype
+# CredVault – Certificate Issuing & Verification Platform
 
-[![Vite](https://img.shields.io/badge/Vite-8.x-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
-[![React](https://img.shields.io/badge/React-19.x-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![React Router](https://img.shields.io/badge/React_Router-7.x-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+A modern, responsive frontend web application developed as part of **ELEVATE SDE Internship – Task 2 (Full Stack Development)**.
 
----
+CredVault allows citizens to request certificates, track their applications, and verify issued certificates. Administrators can manage applications, issue certificates, reject applications, and revoke certificates through an admin dashboard.
 
-## 1. Project Overview
+## 🚀 Features
 
-**CredVault** is a digital certificate issuing and verification platform prototype modeled after modern digital government citizen services (such as DigiLocker and National Portal systems). 
+### 👤 Citizen Features
+- **Home Page:** Simple navigation to all public services.
+- **Request Certificate:** Submit certificate requests with personal details.
+- **Track Application:** Check application status using an Application ID.
+- **Verify Certificate:** Verify certificates using a Certificate ID.
+- **Form Validation:** Required fields and mobile number validation.
+- **Application ID Generation:** Automatically generates unique application IDs.
+- **Status Tracking:** Displays Pending, Approved, and Rejected application statuses.
 
-The application facilitates a complete lifecycle for citizen credentials:
-- **Citizens** can submit formal certificate requests with Indian domicile and mobile validation, monitor application progress via unique Application IDs (`APP-XXXX`), and verify the authenticity of issued certificates (`CERT-XXXX`).
-- **Administrators** can authenticate via a protected portal to inspect application queues, approve and issue sequential digital certificates, or reject applications with recorded remarks. Additionally, administrators can revoke active certificates with immediate synchronization across public verification channels.
+### 🔐 Admin Features
+- **Admin Login:** Demo login for administrator access.
+- **Application Management:** View and search submitted applications.
+- **Issue Certificates:** Approve applications and generate unique Certificate IDs.
+- **Reject Applications:** Reject pending certificate applications.
+- **Certificate Management:** View all issued certificates.
+- **Revoke Certificates:** Revoke previously issued certificates.
+- **Dashboard Statistics:** View application and certificate counts.
+- **Search and Filters:** Find records by ID, name, or status.
 
-> **Important Architecture Notice:** This is a **frontend-only** implementation engineered specifically for the ELEVATE SDE Internship Task 2 evaluation. It relies on browser `localStorage` and `sessionStorage` with zero external backend, database, or paid third-party API dependencies. The business logic is structured into distinct service layers (`storageService.js` and `idService.js`) to enable seamless migration to a REST or GraphQL backend in the future.
+### 💾 Data Persistence
+- Uses browser `localStorage` to store demo applications and certificates.
+- Data remains available after refreshing the browser.
+- Updates application and certificate statuses when admin actions are performed.
+- Uses dummy data; no backend or database is required for this task.
 
----
+## 🛠️ Technologies Used
 
-## 2. Key Objectives & Features
+- React.js
+- Vite
+- JavaScript
+- Tailwind CSS
+- React Router DOM
+- Lucide React
+- HTML5
+- CSS3
+- Browser localStorage
 
-### Citizen Experience
-- **Home Landing Portal (`/`)**: High-impact government SaaS aesthetic featuring brand mission, quick action cards, and architectural highlights.
-- **Certificate Request Engine (`/request`)**:
-  - Full Name, 10-digit Indian mobile validation (with optional `+91`), gender selection, city, and a comprehensive state dropdown containing all **28 Indian States and 8 Union Territories**.
-  - Client-side validation ensuring non-empty, non-whitespace-only, and format-compliant inputs with inline error messaging.
-  - Automatic generation of sequential Application IDs (e.g., `APP-0005`) with audit timestamp and initial `Pending` status.
-  - Interactive success modal with direct shortcuts to track the application or submit additional requests.
-- **Application Tracking (`/track`)**:
-  - Case-insensitive, whitespace-trimmed lookup for any Application ID.
-  - Visual 3-stage progress indicator (`Submitted` &rarr; `Under Review` &rarr; `Approved / Rejected`).
-  - Clear "Application not found" handling for unknown records.
-  - Direct deep-link to verify the certificate once issued.
-- **Certificate Verification (`/verify`)**:
-  - Instant public certificate authenticity lookup by Certificate ID (e.g., `CERT-0001`).
-  - Distinct colored indicator badges: **VALID** (emerald green) and **REVOKED** (rose red).
-  - High-fidelity printable digital certificate preview with official seal border, metadata grid, and digital signature hash.
+## 📄 Application Pages
 
-### Administrator Experience
-- **Demo Authentication (`/admin/login`)**:
-  - Clean login card with username, password, show/hide password toggle, and validation.
-  - Session-based authentication stored in `sessionStorage` (with one-click demo credentials auto-fill).
-- **Applications Management (`/admin/applications`)**:
-  - Protected route redirecting unauthenticated visitors to login.
-  - Real-time summary cards: **Total**, **Pending**, **Approved**, and **Rejected**.
-  - Search by applicant name, Application ID, or city, combined with status filtering tabs.
-  - **Issue Action**: Promotes application to `Approved` and mints a unique Certificate ID (`CERT-XXXX`) with synchronized records. Prevents duplicate issuance.
-  - **Reject Action**: Opens an accessible confirmation modal with optional remark capture. Permanently locks the application from certificate issuance.
-- **Certificates Registry (`/admin/certificates`)**:
-  - Real-time summary cards: **Total Issued**, **Active & Valid**, and **Revoked**.
-  - Registry search and status filtering (All, Valid, Revoked).
-  - **Revoke Action**: Confirmation modal allowing administrative revocation with reason logging. Immediate propagation to public verification screen.
-- **One-Click Demo Reset**: Reset button available in header and footer to restore sample records anytime during testing.
+| Page | Route | Description |
+|---|---|---|
+| Home | `/` | Main page with navigation to public services |
+| Request Certificate | `/request` | Submit a certificate application |
+| Track Application | `/track` | Track an application using its ID |
+| Verify Certificate | `/verify` | Verify a certificate using its ID |
+| Admin Login | `/admin/login` | Administrator demo login |
+| Admin Applications | `/admin/applications` | View, issue, and reject applications |
+| Admin Certificates | `/admin/certificates` | View and revoke issued certificates |
 
----
+## 📸 Screenshots
 
-## 3. Technology Stack
+The following screenshots demonstrate the main pages of the CredVault application.
 
-| Layer | Technology | Description |
-| :--- | :--- | :--- |
-| **Framework & Build** | React 19 + Vite 8 | Fast ESM bundling and component architecture |
-| **Language** | JavaScript (ES6+) | Clean, modular functional components and hooks |
-| **Styling** | Tailwind CSS v3.4 | Government-style navy blue (`#1b365d`) and teal (`#0d9488`) theme |
-| **Routing** | React Router DOM v7 | Single-page client navigation with protected route guards |
-| **Icons** | Lucide React | Clean, lightweight SVG iconography |
-| **Storage & Persistence**| Browser `localStorage` / `sessionStorage` | Persistent demo records and session auth simulation |
+### 1. Home Page
+![CredVault Home Page](screenshots/home.png)
 
----
+### 2. Request Certificate
+![Request Certificate Page](screenshots/request.png)
 
-## 4. Main Pages & Routes
+### 3. Track Application
+![Track Application Page](screenshots/track.png)
 
-| # | Route | Page Title | Access | Description |
-| :-: | :--- | :--- | :-: | :--- |
-| 1 | `/` | Home | Public | Platform overview, 3 main action cards, feature highlights |
-| 2 | `/request` | Request Certificate | Public | Citizen submission form with 28 States & 8 UTs dropdown |
-| 3 | `/track` | Track Application | Public | Search application status with progress stepper and auto-fill |
-| 4 | `/verify` | Verify Certificate | Public | Validate certificate authenticity; displays VALID / REVOKED status |
-| 5 | `/admin/login` | Admin Login | Public | Administrative login card with demo credentials |
-| 6 | `/admin/applications` | Applications | Protected | Review submissions, issue certificates, reject applications |
-| 7 | `/admin/certificates` | Certificates | Protected | Search issued certificates, filter by status, revoke credentials |
-| 8 | `*` | Page Not Found | Public | Standard 404 page with navigation fallback |
+### 4. Verify Certificate
+![Verify Certificate Page](screenshots/verify.png)
 
----
+### 5. Admin Login
+![Admin Login Page](screenshots/admin-login.png)
 
-## 5. Project Folder Structure
+### 6. Admin Applications
+![Admin Applications Page](screenshots/admin-applications.png)
+
+### 7. Admin Certificates
+![Admin Certificates Page](screenshots/admin-certificates.png)
+
+> **Note:** Replace these screenshot paths with the actual filenames if your screenshots use different names. Upload the screenshot files to the `screenshots` folder in this repository so they display correctly.
+
+## ⚙️ Installation and Setup
+
+### Prerequisites
+- Node.js and npm installed.
+- Git installed (optional, for Git-based upload).
+- A modern web browser such as Google Chrome.
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/ashwinibn16-png/ELEVATE-SDE-Task-2.git
+```
+
+Replace `ashwinibn16-png` with your GitHub username.
+
+### Step 2: Navigate to the Project Folder
+
+```bash
+cd ELEVATE-SDE-Task-2
+```
+
+### Step 3: Install Dependencies
+
+```bash
+npm install
+```
+
+### Step 4: Start the Development Server
+
+```bash
+npm run dev
+```
+
+### Step 5: Open the Application
+
+Open the local URL displayed in your terminal. With a standard Vite configuration, it is usually:
+
+```text
+http://localhost:5173
+```
+
+## 🔑 Demo Admin Credentials
+
+Use the following credentials to access the admin dashboard.
+
+| Field | Value |
+|---|---|
+| Username | `admin` |
+| Password | `admin` |
+
+**Important:** These credentials are for demonstration purposes only. The frontend login is not secure production authentication.
+
+## 🧪 Sample Demo Data
+
+Use the following sample IDs to test the application. Actual IDs may differ depending on the data initialized by the application.
+
+| Record | Sample ID |
+|---|---|
+| Application ID | `APP-0001` |
+| Certificate ID | `CERT-0001` |
+
+If the sample IDs are not available in your running application, submit a new application or check the seeded demo records.
+
+## 🔄 Application Workflow
+
+1. A citizen opens the Home Page.
+2. The citizen submits a certificate request.
+3. CredVault generates an Application ID and saves the application.
+4. The citizen tracks the application using the generated ID.
+5. The administrator logs in and reviews pending applications.
+6. The administrator approves and issues a certificate or rejects the application.
+7. Issued certificates receive a unique Certificate ID.
+8. The public verifies the certificate using its ID.
+9. The administrator can revoke an issued certificate.
+10. The verification page reflects the latest certificate status.
+
+## 📁 Project Structure
 
 ```text
 ELEVATE-SDE-Task-2/
-├── screenshots/                       # Captured UI screenshots for Task 2 review
+├── public/
+├── screenshots/
 │   ├── home.png
 │   ├── request.png
 │   ├── track.png
@@ -99,187 +172,53 @@ ELEVATE-SDE-Task-2/
 │   ├── admin-applications.png
 │   └── admin-certificates.png
 ├── src/
-│   ├── components/                   # Reusable UI components
-│   │   ├── AdminLayout.jsx           # Admin header, navigation tabs, and actions
-│   │   ├── Button.jsx                # Multi-variant button (primary, teal, secondary, danger)
-│   │   ├── ConfirmModal.jsx          # Accessible confirmation dialog for reject/revoke
-│   │   ├── Footer.jsx                # Official footer with reset demo data action
-│   │   ├── FormField.jsx             # Accessible input wrapper with inline validation errors
-│   │   ├── Navbar.jsx                # Top banner, brand emblem, public navigation & mobile drawer
-│   │   ├── ProtectedRoute.jsx        # Route guard checking admin session authentication
-│   │   └── StatusBadge.jsx           # Unified badge (Pending, Approved, Rejected, Valid, Revoked)
-│   ├── data/
-│   │   ├── demoData.js               # Initial sample applications & certificates
-│   │   └── indianStates.js           # Exact 28 States & 8 Union Territories
+│   ├── components/
 │   ├── pages/
-│   │   ├── AdminApplications.jsx     # Admin queue, issue & reject workflows
-│   │   ├── AdminCertificates.jsx     # Admin certificates table and revoke workflow
-│   │   ├── AdminLogin.jsx            # Admin login card with demo auto-fill
-│   │   ├── Home.jsx                  # Public landing page with hero & action cards
-│   │   ├── NotFound.jsx              # 404 error page
-│   │   ├── RequestCertificate.jsx    # Application form with Indian phone & state validation
-│   │   ├── TrackApplication.jsx      # Tracking lookup & visual progress timeline
-│   │   └── VerifyCertificate.jsx     # Public verification & certificate print view
 │   ├── services/
-│   │   ├── idService.js              # Unique sequential ID generator (APP-XXXX, CERT-XXXX)
-│   │   └── storageService.js         # Centralized localStorage & sessionStorage abstraction
-│   ├── App.jsx                       # Router configuration and layout composition
-│   ├── index.css                     # Tailwind directives and utility classes
-│   └── main.jsx                      # React 19 application entry point
-├── index.html                        # HTML template with Google Fonts (Inter) and favicon
-├── package.json                      # Project dependencies and npm scripts
-├── postcss.config.js                 # PostCSS config for Tailwind CSS
-├── tailwind.config.js                # Custom navy-blue and teal design system tokens
-├── vite.config.js                    # Vite configuration
-└── README.md                         # Documentation and submission report
+│   ├── data/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+└── README.md
 ```
 
----
+*The exact folder structure may vary slightly depending on the implementation.*
 
-## 6. Demo Credentials & Sample Records
+## 🔒 Limitations
 
-### Admin Login Credentials
-- **Username:** `admin`
-- **Password:** `admin`
+- This project is a frontend-only prototype.
+- No backend API or database is connected.
+- Demo records are stored in the browser's localStorage.
+- Data is specific to the browser and device where it is stored.
+- Client-side admin authentication is for demonstration only.
+- Certificate verification uses local demo records and does not connect to a government registry.
 
-> Click the **"Auto-Fill"** button on `/admin/login` to populate these credentials instantly.
+## 🔮 Future Enhancements
 
-### Seeded Sample Records
-The application initializes with realistic sample data on first launch without overwriting any new user data:
+- Integrate a secure backend API.
+- Add a database for applications and certificates.
+- Implement secure administrator authentication and role-based access.
+- Add email or SMS notifications.
+- Generate downloadable digital certificates in PDF format.
+- Add QR-code-based certificate verification.
+- Maintain an audit log for certificate issuance and revocation.
+- Deploy the application to a hosting platform.
 
-| Record Type | ID | Holder / Applicant | Status | Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| **Application** | `APP-0001` | Aarav Sharma | `Approved` | Linked to Certificate `CERT-0001` |
-| **Application** | `APP-0002` | Priya Patel | `Pending` | Ready for testing **Issue** or **Reject** in Admin |
-| **Application** | `APP-0003` | Rohan Verma | `Rejected` | Demonstrates rejected state & issuance lock |
-| **Application** | `APP-0004` | Ananya Iyer | `Approved` | Linked to Certificate `CERT-0002` |
-| **Certificate** | `CERT-0001` | Aarav Sharma | `Valid` | Tests public **VALID** green indicator badge |
-| **Certificate** | `CERT-0002` | Ananya Iyer | `Revoked` | Tests public **REVOKED** red indicator badge |
+## 👩‍💻 Internship Information
 
----
+- **Program:** ELEVATE Internship Program
+- **Role:** Software Development Engineer Intern – Full Stack Development
+- **Task:** Task 2 – Certificate Issuing & Verification Platform
+- **Project:** CredVault
 
-## 7. Prerequisites & Local Installation
+## 📜 Disclaimer
 
-### Prerequisites
-- **Node.js**: Version 18.x or higher (tested on Node v25.x)
-- **npm**: Version 9.x or higher
-
-### Installation Steps
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/ELEVATE-SDE-Task-2.git
-   cd ELEVATE-SDE-Task-2
-   ```
-
-2. **Install project dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Start the local development server:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open in browser:**
-   Open [http://localhost:5173](http://localhost:5173) in your web browser.
-
-5. **(Optional) Build production bundle:**
-   ```bash
-   npm run build
-   npm run preview
-   ```
+CredVault is an educational frontend prototype created for internship learning and demonstration. It is not an official government service, and its demo authentication and certificate records must not be used for real-world verification.
 
 ---
 
-## 8. Data Storage Architecture & Future Backend Integration
-
-### Current Local Simulation Architecture
-```text
-Citizen Form / Admin Action
-           │
-           ▼
-   storageService.js  ◄──►  idService.js (Unique ID calculation)
-           │
-     ┌─────┴──────────────┐
-     ▼                    ▼
-localStorage         sessionStorage
-(Apps & Certs)       (Admin Auth Flag)
-```
-
-- **Persistence**: All applications and certificates are stored under `credvault_applications` and `credvault_certificates` keys in browser `localStorage`. Refreshing or reopening the browser preserves all state.
-- **Safety**: Demo data is seeded only when keys are missing. Corrupted JSON data is handled gracefully with safe fallbacks.
-- **Synchronization**: Approving an application automatically generates a certificate, marks the certificate as `Valid`, and assigns the Certificate ID to the application. Revoking a certificate immediately updates both the admin registry and the public verification portal.
-
-### Limitations & Future Backend Roadmap
-1. **Security**: Client-side storage and credentials (`admin`/`admin`) are solely for frontend prototype simulation. In production, this would be backed by JSON Web Tokens (JWT) / OAuth 2.0 with HTTP-only cookies.
-2. **Data Concurrency**: Local storage is isolated to the user's browser profile. In production, a PostgreSQL or MongoDB database with a Node.js / Express or Python / FastAPI backend will support multi-tenant persistence.
-3. **Cryptographic Signatures**: The prototype simulates digital verification hashes (`SHA256-CERT-XXXX`). Production implementation can integrate an asymmetric PKI signature scheme (RSA/Ed25519) and QR code scanning.
-
----
-
-## 9. Page Screenshots
-
-All seven primary pages have been captured from the working application:
-
-### 1. Home (`/`)
-![Home Page](screenshots/home.png)
-
----
-
-### 2. Request Certificate (`/request`)
-![Request Certificate Page](screenshots/request.png)
-
----
-
-### 3. Track Application (`/track`)
-![Track Application Page](screenshots/track.png)
-
----
-
-### 4. Verify Certificate (`/verify`)
-![Verify Certificate Page](screenshots/verify.png)
-
----
-
-### 5. Admin Login (`/admin/login`)
-![Admin Login Page](screenshots/admin-login.png)
-
----
-
-### 6. Admin Applications (`/admin/applications`)
-![Admin Applications Dashboard](screenshots/admin-applications.png)
-
----
-
-### 7. Admin Certificates (`/admin/certificates`)
-![Admin Certificates Registry](screenshots/admin-certificates.png)
-
----
-
-## 10. Verification & Quality Checklist
-
-- [x] Responsive layout across desktop, tablet, and mobile screens.
-- [x] Government-service design system: navy blue (`#1b365d`) with subtle teal accents.
-- [x] Clean white and light-gray backgrounds, soft shadows, readable typography.
-- [x] Standardized colored status badges (`Pending`, `Approved`, `Rejected`, `Valid`, `Revoked`).
-- [x] Exactly 28 Indian States and 8 Union Territories in State dropdown.
-- [x] 10-digit Indian mobile number validation with optional `+91`.
-- [x] Dynamic sequential ID generation (`APP-0001`, `CERT-0001`, etc.).
-- [x] Case-insensitive, whitespace-trimmed tracking and verification lookups.
-- [x] Admin login with session authentication (`admin` / `admin`).
-- [x] Protected admin routes redirecting unauthenticated users to `/admin/login`.
-- [x] Immediate state synchronization between application issuing and certificate creation.
-- [x] Revocation confirmation dialog with immediate public reflection.
-- [x] Rejection locks application from receiving certificates.
-- [x] Fully functioning 404 Not Found page.
-- [x] Clean zero-error production build.
-
----
-
-## 11. Author
-
-**Candidate:** ELEVATE SDE Internship Candidate  
-**Project:** CredVault — Certificate Issuing & Verification Platform  
-**Task:** ELEVATE SDE Internship Task 2
+**Developed as part of the ELEVATE SDE Internship Program.**
