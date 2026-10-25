@@ -60,6 +60,7 @@ CredVault allows citizens to request certificates, track their applications, and
 The following screenshots demonstrate the main pages of the CredVault application.
 
 ### 1. Home Page
+<<<<<<< HEAD
 ![CredVault Home Page](screenshots/home.png)
 
 ### 2. Request Certificate
@@ -79,6 +80,38 @@ The following screenshots demonstrate the main pages of the CredVault applicatio
 
 ### 7. Admin Certificates
 ![Admin Certificates Page](screenshots/admin-certificates.png)
+=======
+ <img width="1882" height="806" alt="Screenshot 2026-10-25 120043" src="https://github.com/user-attachments/assets/8aa07845-525f-4ec7-83c2-367f78fca104" />
+
+
+### 2. Request Certificate
+<img width="1851" height="902" alt="Screenshot 2026-10-25 120154" src="https://github.com/user-attachments/assets/e458ab20-81e3-4a43-8fb9-2783834c7ca7" />
+<img width="1885" height="907" alt="Screenshot 2026-10-25 120218" src="https://github.com/user-attachments/assets/88ef661c-8be7-4cd6-9a52-a015996d588b" />
+
+
+### 3. Track Application
+<img width="1892" height="895" alt="Screenshot 2026-10-25 120245" src="https://github.com/user-attachments/assets/91b64c2a-d8bc-46ee-9efa-91c931f2950a" />
+<img width="1836" height="915" alt="Screenshot 2026-10-25 120323" src="https://github.com/user-attachments/assets/8ccd5288-064c-4d3c-9e77-f72d78483cf9" />
+<img width="1807" height="910" alt="Screenshot 2026-10-25 120541" src="https://github.com/user-attachments/assets/e654ff5d-a947-42b1-a553-96872794dd95" />
+
+
+
+### 4. Verify Certificate
+<img width="1851" height="870" alt="Screenshot 2026-10-25 120612" src="https://github.com/user-attachments/assets/0e03776d-9708-416c-ba53-c17231e5c858" />
+
+
+### 5. Admin Login
+<img width="1811" height="861" alt="Screenshot 2026-10-25 120357" src="https://github.com/user-attachments/assets/32505c16-38b7-4a89-944a-89191be16d07" />
+
+
+### 6. Admin Applications
+<img width="1885" height="907" alt="Screenshot 2026-10-25 120437" src="https://github.com/user-attachments/assets/b2037d45-ee9b-4711-aeeb-680a7641e79f" />
+
+
+### 7. Admin Certificates
+<img width="1762" height="911" alt="Screenshot 2026-10-25 121625" src="https://github.com/user-attachments/assets/1c7085d7-a114-4503-9e70-e960396ba65c" />
+
+>>>>>>> 940a8a1c25096746ea97923360dba876f98aeb39
 
 > **Note:** Replace these screenshot paths with the actual filenames if your screenshots use different names. Upload the screenshot files to the `screenshots` folder in this repository so they display correctly.
 
@@ -92,10 +125,17 @@ The following screenshots demonstrate the main pages of the CredVault applicatio
 ### Step 1: Clone the Repository
 
 ```bash
+<<<<<<< HEAD
 git clone https://github.com/ashwinibn16-png/ELEVATE-SDE-Task-2.git
 ```
 
 Replace `ashwinibn16-png` with your GitHub username.
+=======
+git clone https://github.com/YOUR-USERNAME/ELEVATE-SDE-Task-2.git
+```
+
+Replace `YOUR-USERNAME` with your GitHub username.
+>>>>>>> 940a8a1c25096746ea97923360dba876f98aeb39
 
 ### Step 2: Navigate to the Project Folder
 
@@ -221,4 +261,9 @@ CredVault is an educational frontend prototype created for internship learning a
 
 ---
 
+<<<<<<< HEAD
 **Developed as part of the ELEVATE SDE Internship Program.**
+=======
+**Developed as part of the ELEVATE SDE Internship Program.**# ELEVATE-SDE-Task-2
+CredVault – Certificate Issuing &amp; Verification Platform | ELEVATE SDE Internship Task 2
+>>>>>>> 940a8a1c25096746ea97923360dba876f98aeb39
